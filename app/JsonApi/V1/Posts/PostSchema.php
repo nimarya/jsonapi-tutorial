@@ -66,6 +66,7 @@ class PostSchema extends Schema
         return [
             WhereIdIn::make($this),
             WhereIn::make('author', 'author_id'),
+            WhereIn::make('category', 'category_id'),
         ];
     }
 
