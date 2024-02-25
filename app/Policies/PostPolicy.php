@@ -9,14 +9,6 @@ use Illuminate\Auth\Access\Response;
 class PostPolicy
 {
     /**
-     * Determine whether the user can view any models.
-     */
-    public function viewAny(User $user): bool
-    {
-        //
-    }
-
-    /**
   * Determine whether the user can view the model.
   *
   * @param  \App\Models\User|null  $user
@@ -33,42 +25,38 @@ class PostPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can view the post's author.
+     *
+     * @param  \App\Models\User|null  $user
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user): bool
+    public function viewAuthor(?User $user, Post $post)
     {
-        //
+        return $this->view($user, $post);
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the user can view the post's comments.
+     *
+     * @param  \App\Models\User|null  $user
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Post $post): bool
+    public function viewComments(?User $user, Post $post)
     {
-        //
+        return $this->view($user, $post);
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the user can view the post's tags.
+     *
+     * @param  \App\Models\User|null  $user
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Post $post): bool
+    public function viewTags(?User $user, Post $post)
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Post $post): bool
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Post $post): bool
-    {
-        //
+        return $this->view($user, $post);
     }
 }

@@ -25,6 +25,13 @@ class PostSchema extends Schema
     public static string $model = Post::class;
 
     /**
+     * The maximum include path depth.
+     *
+     * @var int
+     */
+    protected int $maxDepth = 3;
+
+    /**
      * Get the resource fields.
      *
      * @return array
