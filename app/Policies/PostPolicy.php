@@ -118,4 +118,16 @@ class PostPolicy
     {
         return $this->update($user, $post);
     }
+
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function delete(User $user, Post $post)
+    {
+        return $this->update($user, $post);
+    }
 }
