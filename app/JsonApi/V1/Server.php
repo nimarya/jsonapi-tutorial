@@ -23,6 +23,8 @@ class Server extends BaseServer
      */
     public function serving(): void
     {
+        Auth::shouldUse('sanctum');
+        
         Post::creating(static function (Post $post): void {
             $post->author()->associate(Auth::user());
         });
