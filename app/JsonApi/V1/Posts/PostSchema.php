@@ -32,7 +32,7 @@ class PostSchema extends Schema
      *
      * @var int
      */
-    protected int $maxDepth = 3;
+    protected int $maxDepth = 4;
 
     /**
      * Get the resource fields.
@@ -50,6 +50,7 @@ class PostSchema extends Schema
             DateTime::make('publishedAt')->sortable(),
             Str::make('slug'),
             BelongsToMany::make('tags'),
+            BelongsToMany::make('categories'),
             Str::make('title')->sortable(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
         ];

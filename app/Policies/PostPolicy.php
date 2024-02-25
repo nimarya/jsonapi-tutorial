@@ -72,6 +72,18 @@ class PostPolicy
     }
 
     /**
+     * Determine whether the user can view the post's categories.
+     *
+     * @param  \App\Models\User|null  $user
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function viewCategories(?User $user, Post $post)
+    {
+        return $this->view($user, $post);
+    }
+
+    /**
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user

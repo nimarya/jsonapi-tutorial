@@ -28,5 +28,6 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function (ResourceRegistrar 
                 $relations->hasOne('author')->readOnly();
                 $relations->hasMany('comments')->readOnly();
                 $relations->hasMany('tags');
+                $relations->hasMany('categories');
             });
 });

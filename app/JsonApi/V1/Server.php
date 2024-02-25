@@ -24,7 +24,7 @@ class Server extends BaseServer
     public function serving(): void
     {
         Auth::shouldUse('sanctum');
-        
+
         Post::creating(static function (Post $post): void {
             $post->author()->associate(Auth::user());
         });
@@ -38,6 +38,7 @@ class Server extends BaseServer
     protected function allSchemas(): array
     {
         return [
+            Categories\CategorySchema::class,
             Comments\CommentSchema::class,
             Posts\PostSchema::class,
             Tags\TagSchema::class,
