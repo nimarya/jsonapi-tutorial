@@ -32,7 +32,7 @@ class PostSchema extends Schema
      *
      * @var int
      */
-    protected int $maxDepth = 4;
+    protected int $maxDepth = 3;
 
     /**
      * Get the resource fields.

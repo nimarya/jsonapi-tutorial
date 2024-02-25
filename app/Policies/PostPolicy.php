@@ -143,6 +143,42 @@ class PostPolicy
     }
 
     /**
+     * Determine whether the user can update the model's Categories relationship.
+     *
+     * @param User $user
+     * @param Post $post
+     * @return bool|\Illuminate\Auth\Access\Response
+     */
+    public function updateCategories(User $user, Post $post)
+    {
+        return $this->update($user, $post);
+    }
+
+    /**
+     * Determine whether the user can attach Categories to the model's Categories relationship.
+     *
+     * @param User $user
+     * @param Post $post
+     * @return bool|\Illuminate\Auth\Access\Response
+     */
+    public function attachCategories(User $user, Post $post)
+    {
+        return $this->update($user, $post);
+    }
+
+    /**
+     * Determine whether the user can detach Categories from the model's Categories relationship.
+     *
+     * @param User $user
+     * @param Post $post
+     * @return bool|\Illuminate\Auth\Access\Response
+     */
+    public function detachCategories(User $user, Post $post)
+    {
+        return $this->update($user, $post);
+    }
+
+    /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
