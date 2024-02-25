@@ -9,12 +9,23 @@ use Illuminate\Auth\Access\Response;
 class PostPolicy
 {
     /**
-  * Determine whether the user can view the model.
-  *
-  * @param  \App\Models\User|null  $user
-  * @param  \App\Models\Post  $post
-  * @return \Illuminate\Auth\Access\Response|bool
-  */
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User|null  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function viewAny(?User $user)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User|null  $user
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Auth\Access\Response|bool
+    */
     public function view(?User $user, Post $post)
     {
         if ($post->published_at) {
