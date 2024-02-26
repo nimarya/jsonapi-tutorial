@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  title: Blog API
+  description: API for managing blog posts, including detailed relationships.
+  version: "1.0"
+servers:
+  - url: http://localhost/api/v1
+    description: Local development server
+paths:
+  /posts:
+    get:
+      summary: Get all posts
+      description: Returns a list of all posts from the database, including relationships and links.
+      responses:
+        '200':
+          description: A JSON object containing all posts and their related information.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonapi:
+                    type: object
+                    properties:
+                      version:
+                        type: string
+                        example: "1.0"
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Post'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Internal Server Error"
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        type:
+          type: string
+          example: "posts"
+        id:
+          type: string
+          example: "1"
+        attributes:
+          type: object
+          properties:
+            content:
+              type: string
+              example: "Content of the post here."
+            createdAt:
+              type: string
+              format: date-time
+            publishedAt:
+              type: string
+              format: date-time
+            slug:
+              type: string
+              example: "unique-post-slug"
+            title:
+              type: string
+              example: "Sample Post Title"
+            updatedAt:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            author:
+              $ref: '#/components/schemas/Relationship'
+            comments:
+              $ref: '#/components/schemas/Relationship'
+            tags:
+              $ref: '#/components/schemas/Relationship'
+            categories:
+              $ref: '#/components/schemas/Relationship'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              example: "http://localhost/api/v1/posts/1"
+    Relationship:
+      type: object
+      properties:
+        links:
+          type: object
+          properties:
+            related:
+              type: string
+              example: "http://localhost/api/v1/posts/1/author"
+            self:
+              type: string
+              example: "http://localhost/api/v1/posts/1/relationships/author"
