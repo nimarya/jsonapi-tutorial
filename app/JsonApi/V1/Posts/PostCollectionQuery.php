@@ -26,6 +26,7 @@ class PostCollectionQuery extends ResourceQuery
                 'array',
                 JsonApiRule::filter(),
             ],
+            'filter.content' => 'string',
             'filter.author' => 'array',
             'filter.author.*' => 'integer',
             'filter.id' => 'array',

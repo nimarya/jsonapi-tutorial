@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\V1\Posts;
 
+use App\JsonApi\Filters\LikeFilter;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -66,6 +67,7 @@ class PostSchema extends Schema
         return [
             WhereIdIn::make($this),
             WhereIn::make('author', 'author_id'),
+            LikeFilter::make('content'),
         ];
     }
 
