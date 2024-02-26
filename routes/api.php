@@ -30,4 +30,8 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function (ResourceRegistrar 
                 $relations->hasMany('tags');
                 $relations->hasMany('categories');
             });
+        $server->resource('categories', JsonApiController::class)
+            ->relationships(function (Relationships $relations) {
+                $relations->hasMany('posts')->readOnly();
+            });
 });
